@@ -1,1355 +1,190 @@
 <!DOCTYPE html>
 <html lang="km">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Company Tourism - ក្រុមហ៊ុនទេសចរណ៍</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Bayon&family=Koulen&family=Moul&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #1a6b3c;
-            --secondary: #f9a825;
-            --light: #f8f9fa;
-            --dark: #1a1a1a;
-            --gray: #6c757d;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Koulen', cursive;
-            line-height: 1.6;
-            color: var(--dark);
-            background-color: #f5f5f5;
-        }
-        
-        .khmer-title {
-            font-family: 'Bayon', sans-serif;
-        }
-        
-        .khmer-content {
-            font-family: 'Moul', cursive;
-        }
-        
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        /* Header & Navigation */
-        header {
-            background-color: var(--primary);
-            color: white;
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-        
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .logo i {
-            font-size: 2rem;
-            color: var(--secondary);
-        }
-        
-        .logo h1 {
-            font-size: 1.8rem;
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 1.5rem;
-        }
-        
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-size: 1.2rem;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-        }
-        
-        nav a:hover, nav a.active {
-            background-color: var(--secondary);
-            color: var(--dark);
-        }
-        
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-        
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            text-align: center;
-            padding: 6rem 2rem;
-            margin-bottom: 3rem;
-        }
-        
-        .hero h2 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: var(--secondary);
-        }
-        
-        .hero p {
-            font-size: 1.5rem;
-            max-width: 800px;
-            margin: 0 auto 2rem;
-        }
-        
-        .btn {
-            display: inline-block;
-            background-color: var(--secondary);
-            color: var(--dark);
-            padding: 0.8rem 2rem;
-            text-decoration: none;
-            border-radius: 30px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-        }
-        
-        .btn:hover {
-            background-color: #e68900;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .btn-small {
-            padding: 0.5rem 1.5rem;
-            font-size: 1rem;
-        }
-        
-        /* Main Content */
-        main {
-            min-height: 60vh;
-            padding: 2rem 0;
-        }
-        
-        .page-title {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 2rem;
-            text-align: center;
-            border-bottom: 3px solid var(--secondary);
-            padding-bottom: 0.5rem;
-            display: inline-block;
-        }
-        
-        .page-content {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            margin-bottom: 3rem;
-        }
-        
-        /* Breadcrumb */
-        .breadcrumb {
-            background-color: #e9ecef;
-            padding: 1rem;
-            border-radius: 5px;
-            margin-bottom: 2rem;
-        }
-        
-        .breadcrumb ul {
-            display: flex;
-            list-style: none;
-            flex-wrap: wrap;
-        }
-        
-        .breadcrumb li {
-            margin-right: 0.5rem;
-        }
-        
-        .breadcrumb a {
-            color: var(--primary);
-            text-decoration: none;
-        }
-        
-        .breadcrumb li:not(:last-child)::after {
-            content: ">";
-            margin-left: 0.5rem;
-            color: var(--gray);
-        }
-        
-        /* Services Grid */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .service-card {
-            background-color: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-            cursor: pointer;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-10px);
-        }
-        
-        .service-icon {
-            background-color: var(--primary);
-            color: white;
-            font-size: 2.5rem;
-            padding: 1.5rem;
-            text-align: center;
-        }
-        
-        .service-content {
-            padding: 1.5rem;
-        }
-        
-        .service-content h3 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-        
-        /* Service Detail Page */
-        .service-detail {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: start;
-        }
-        
-        .service-info h3 {
-            color: var(--primary);
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .service-features {
-            margin-top: 2rem;
-        }
-        
-        .service-features ul {
-            list-style-type: none;
-            padding-left: 0;
-        }
-        
-        .service-features li {
-            padding: 0.5rem 0;
-            border-bottom: 1px dashed #eee;
-        }
-        
-        .service-features li:before {
-            content: "✓";
-            color: var(--secondary);
-            font-weight: bold;
-            margin-right: 10px;
-        }
-        
-        .service-image {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        .service-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-        
-        /* Contact Types */
-        .contact-types {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .contact-card {
-            background-color: white;
-            border-radius: 10px;
-            padding: 2rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            text-align: center;
-            border-top: 5px solid var(--primary);
-        }
-        
-        .contact-icon {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-        
-        .contact-card h3 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-        
-        /* Contact Form */
-        .contact-form {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--primary);
-            font-size: 1.2rem;
-        }
-        
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 0.8rem;
-            border: 2px solid #ddd;
-            border-radius: 5px;
-            font-family: 'Koulen', cursive;
-            font-size: 1.1rem;
-        }
-        
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            border-color: var(--primary);
-            outline: none;
-        }
-        
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-        
-        /* Footer */
-        footer {
-            background-color: var(--dark);
-            color: white;
-            padding: 3rem 0 1.5rem;
-            margin-top: 3rem;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-        
-        .footer-section h3 {
-            color: var(--secondary);
-            margin-bottom: 1.5rem;
-            font-size: 1.5rem;
-        }
-        
-        .footer-section ul {
-            list-style: none;
-        }
-        
-        .footer-section ul li {
-            margin-bottom: 0.8rem;
-        }
-        
-        .footer-section a {
-            color: #ddd;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        
-        .footer-section a:hover {
-            color: var(--secondary);
-        }
-        
-        .social-icons {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-        
-        .social-icons a {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            background-color: var(--primary);
-            color: white;
-            border-radius: 50%;
-            text-align: center;
-            line-height: 40px;
-            transition: all 0.3s ease;
-        }
-        
-        .social-icons a:hover {
-            background-color: var(--secondary);
-            color: var(--dark);
-            transform: translateY(-3px);
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 1.5rem;
-            border-top: 1px solid #444;
-            color: #aaa;
-            font-size: 0.9rem;
-        }
-        
-        /* Back Button */
-        .back-button {
-            margin-bottom: 2rem;
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 992px) {
-            .hero h2 {
-                font-size: 2.5rem;
-            }
-            
-            .page-title {
-                font-size: 2rem;
-            }
-            
-            .service-detail {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            nav ul {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: var(--primary);
-                flex-direction: column;
-                padding: 1rem 0;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-            }
-            
-            nav ul.active {
-                display: flex;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .hero {
-                padding: 4rem 1rem;
-            }
-            
-            .hero h2 {
-                font-size: 2rem;
-            }
-            
-            .hero p {
-                font-size: 1.2rem;
-            }
-            
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        /* Page Animation */
-        .page {
-            display: none;
-            animation: fadeIn 0.5s ease;
-        }
-        
-        .page.active {
-            display: block;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        /* Contact Info Section */
-        .contact-info-section {
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 2px solid #eee;
-        }
-        
-        .map-container {
-            margin-top: 2rem;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sale System</title>
+
+<style>
+
+body{
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg,#6dd5ed,#2193b0);
+    margin:0;
+    padding:15px;
+}
+
+.container{
+    background:white;
+    max-width:800px;
+    margin:auto;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+h2{
+    text-align:center;
+}
+
+/* input group */
+.form-group{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:10px;
+}
+
+.form-group input{
+    flex:1;
+    min-width:120px;
+    padding:10px;
+    border-radius:8px;
+    border:1px solid #ccc;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    background:#2193b0;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#17687e;
+}
+
+/* table */
+.table-wrapper{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    margin-top:20px;
+    border-collapse:collapse;
+    min-width:500px;
+}
+
+th,td{
+    border:1px solid #ddd;
+    padding:10px;
+    text-align:center;
+}
+
+th{
+    background:#2193b0;
+    color:white;
+}
+
+.total{
+    margin-top:15px;
+    font-size:18px;
+    font-weight:bold;
+    text-align:right;
+    color:green;
+}
+
+/* 📱 Mobile */
+@media(max-width:600px){
+
+    .form-group{
+        flex-direction:column;
+    }
+
+    button{
+        font-size:18px;
+    }
+
+    h2{
+        font-size:20px;
+    }
+}
+
+</style>
 </head>
+
 <body>
-    <!-- Header & Navigation -->
-    <header>
-        <div class="container header-container">
-            <div class="logo">
-                <i class="fas fa-globe-asia"></i>
-                <h1 class="khmer-title">ក្រុមហ៊ុនទេសចរណ៍</h1>
-            </div>
-            
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <i class="fas fa-bars"></i>
-            </button>
-            
-            <nav>
-                <ul id="mainNav">
-                    <li><a href="#home" class="nav-link active" data-page="home">🏠 ទំព័រដើម</a></li>
-                    <li><a href="#about" class="nav-link" data-page="about">📖 អំពីយើង</a></li>
-                    <li><a href="#services" class="nav-link" data-page="services">🧭 សេវាកម្ម</a></li>
-                    <li><a href="#contact" class="nav-link" data-page="contact">📞 ទំនាក់ទំនង</a></li>
-                    <li><a href="#branches" class="nav-link" data-page="branches">🏢 សាខាយើង</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-    
-    <!-- Hero Section -->
-    <section class="hero">
-        <h2 class="khmer-title">ស្វាគមន៍មកកាន់ Company Tourism</h2>
-        <p class="khmer-content">យើងផ្តល់សេវាកម្មទេសចរណ៍ល្អថ្នាក់ពិភពលោក ជាមួយនឹងបទពិសោធន៍ដ៏ពិសេសសម្រាប់អ្នកធ្វើដំណើរ។</p>
-        <a href="#services" class="btn nav-link" data-page="services">ស្វែងយល់បន្ថែម</a>
-    </section>
-    
-    <!-- Main Content Area (Dynamic Pages) -->
-    <main class="container">
-        <!-- Home Page -->
-        <div id="home-page" class="page active">
-            <h2 class="page-title khmer-title">ស្វាគមន៍មកកាន់ក្រុមហ៊ុនទេសចរណ៍របស់យើង</h2>
-            
-            <div class="breadcrumb">
-                <ul>
-                    <li><a href="#home" class="nav-link" data-page="home">ទំព័រដើម</a></li>
-                </ul>
-            </div>
-            
-            <div class="page-content khmer-content">
-                <p>ក្រុមហ៊ុនទេសចរណ៍របស់យើងផ្តល់សេវាកម្មទេសចរណ៍ពេញលេញ ពីការរៀបចំដំណើរកម្សាន្ត កក់សណ្ឋាគារ សេវាដឹកជញ្ជូន សេវាទិដ្ឋាការ និងមគ្គុទេសក៍ទេសចរណ៍។</p>
-                
-                <div class="services-grid" style="margin-top: 3rem;">
-                    <div class="service-card" data-service="tour-packages">
-                        <div class="service-icon">
-                            <i class="fas fa-map-marked-alt"></i>
-                        </div>
-                        <div class="service-content">
-                            <h3>រៀបចំដំណើរកម្សាន្ត</h3>
-                            <p>ទេសចរណ៍ក្នុងស្រុក និងអន្តរជាតិតាមតម្រូវការរបស់អ្នក</p>
-                            <a href="#service-detail" class="btn btn-small nav-link" data-page="service-detail" data-service="tour-packages" style="margin-top: 1rem;">ព័ត៌មានលម្អិត</a>
-                        </div>
-                    </div>
-                    
-                    <div class="service-card" data-service="hotel-booking">
-                        <div class="service-icon">
-                            <i class="fas fa-hotel"></i>
-                        </div>
-                        <div class="service-content">
-                            <h3>កក់សណ្ឋាគារ</h3>
-                            <p>សណ្ឋាគារ, Guesthouse, Resort នៅទីតាំងសំខាន់ៗ</p>
-                            <a href="#service-detail" class="btn btn-small nav-link" data-page="service-detail" data-service="hotel-booking" style="margin-top: 1rem;">ព័ត៌មានលម្អិត</a>
-                        </div>
-                    </div>
-                    
-                    <div class="service-card" data-service="transportation">
-                        <div class="service-icon">
-                            <i class="fas fa-bus"></i>
-                        </div>
-                        <div class="service-content">
-                            <h3>សេវាដឹកជញ្ជូន</h3>
-                            <p>រថយន្តទេសចរណ៍, ឡានក្រុង, យន្តហោះ, ទូក</p>
-                            <a href="#service-detail" class="btn btn-small nav-link" data-page="service-detail" data-service="transportation" style="margin-top: 1rem;">ព័ត៌មានលម្អិត</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="contact-info-section">
-                    <h3 style="color: var(--primary); margin-bottom: 1rem;">ទំនាក់ទំនងយើងតាមរយៈ</h3>
-                    <div class="contact-types">
-                        <div class="contact-card">
-                            <div class="contact-icon">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                            <h3>ទូរស័ព្ទ</h3>
-                            <p>023 456 789</p>
-                            <p>012 345 678</p>
-                            <p>015 678 901</p>
-                        </div>
-                        
-                        <div class="contact-card">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <h3>អ៊ីមែល</h3>
-                            <p>info@companytourism.com</p>
-                            <p>booking@companytourism.com</p>
-                            <p>support@companytourism.com</p>
-                        </div>
-                        
-                        <div class="contact-card">
-                            <div class="contact-icon">
-                                <i class="fas fa-comments"></i>
-                            </div>
-                            <h3>សារធាតុផ្សព្វផ្សាយសង្គម</h3>
-                            <p>Facebook: CompanyTourismKH</p>
-                            <p>Telegram: @CompanyTourismKH</p>
-                            <p>Instagram: @company_tourism</p>
-                        </div>
-                        
-                        <div class="contact-card">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <h3>ទីតាំងការិយាល័យ</h3>
-                            <p>ផ្ទះលេខ 123, ផ្លូវមានជ័យ, រាជធានីភ្នំពេញ</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- About Page -->
-        <div id="about-page" class="page">
-            <h2 class="page-title khmer-title">អំពីក្រុមហ៊ុនទេសចរណ៍របស់យើង</h2>
-            
-            <div class="breadcrumb">
-                <ul>
-                    <li><a href="#home" class="nav-link" data-page="home">ទំព័រដើម</a></li>
-                    <li>អំពីយើង</li>
-                </ul>
-            </div>
-            
-            <div class="page-content khmer-content">
-                <p><strong>Company Tourism</strong> គឺជាក្រុមហ៊ុន ឬអាជីវកម្ម ដែលផ្តល់សេវាកម្មទាក់ទងនឹង <strong>ការធ្វើដំណើរ និងទេសចរណ៍</strong> ដើម្បីជួយអតិថិជនរៀបចំការធ្វើដំណើររបស់ពួកគេឲ្យមានភាពងាយស្រួល សុវត្ថិភាព និងរីករាយ។</p>
-                
-                <h3 style="color: var(--primary); margin-top: 2rem;">បេសកកម្មរបស់យើង</h3>
-                <p>យើងខិតខំបង្កើតបទពិសោធន៍ធ្វើដំណើរដ៏ពិសេសសម្រាប់អតិថិជនរបស់យើង ដោយផ្តោតលើគុណភាព សុវត្ថិភាព និងការទទួលខុសត្រូវក្នុងការអភិវឌ្ឍទេសចរណ៍។</p>
-                
-                <h3 style="color: var(--primary); margin-top: 2rem;">តម្លៃគោលរបស់យើង</h3>
-                <ul style="padding-left: 1.5rem; margin-top: 1rem;">
-                    <li>គុណភាពសេវាកម្មខ្ពស់</li>
-                    <li>សុវត្ថិភាពជាអាទិភាព</li>
-                    <li>ការទទួលខុសត្រូវសង្គម និងបរិស្ថាន</li>
-                    <li>ភាពជាអ្នកដឹកនាំក្នុងវិស័យទេសចរណ៍</li>
-                </ul>
-                
-                <div class="contact-info-section">
-                    <h3 style="color: var(--primary); margin-bottom: 1rem;">ទំនាក់ទំនងសម្រាប់សួរព័ត៌មានបន្ថែម</h3>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
-                        <div>
-                            <h4 style="color: var(--secondary); margin-bottom: 0.5rem;"><i class="fas fa-phone"></i> ទូរស័ព្ទ</h4>
-                            <p>023 456 789 (ការិយាល័យ)</p>
-                            <p>012 123 456 (ទូរស័ព្ទទូរសារ)</p>
-                        </div>
-                        <div>
-                            <h4 style="color: var(--secondary); margin-bottom: 0.5rem;"><i class="fas fa-envelope"></i> អ៊ីមែល</h4>
-                            <p>info@companytourism.com</p>
-                            <p>corporate@companytourism.com</p>
-                        </div>
-                        <div>
-                            <h4 style="color: var(--secondary); margin-bottom: 0.5rem;"><i class="fas fa-fax"></i> ទូរសារ</h4>
-                            <p>023 456 788</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Services Page -->
-        <div id="services-page" class="page">
-            <h2 class="page-title khmer-title">សេវាកម្មសំខាន់ៗរបស់យើង</h2>
-            
-            <div class="breadcrumb">
-                <ul>
-                    <li><a href="#home" class="nav-link" data-page="home">ទំព័រដើម</a></li>
-                    <li>សេវាកម្ម</li>
-                </ul>
-            </div>
-            
-            <div class="page-content khmer-content">
-                <p>យើងផ្តល់សេវាកម្មទេសចរណ៍ពេញលេញដើម្បីធ្វើឱ្យដំណើររបស់អ្នកកាន់តែងាយស្រួល និងរីករាយ។</p>
-                
-                <div class="services-grid">
-                    <div class="service-card" data-service="tour-packages">
-                        <div class="service-icon">
-                            <i class="fas fa-suitcase-rolling"></i>
-                        </div>
-                        <div class="service-content">
-                            <h3>រៀបចំដំណើរកម្សាន្ត</h3>
-                            <p>ទេសចរណ៍ក្នុងស្រុក និងអន្តរជាតិតាមតម្រូវការរបស់អ្នក</p>
-                            <a href="#service-detail" class="btn btn-small nav-link" data-page="service-detail" data-service="tour-packages" style="margin-top: 1rem;">ព័ត៌មានលម្អិត</a>
-                        </div>
-                    </div>
-                    
-                    <div class="service-card" data-service="hotel-booking">
-                        <div class="service-icon">
-                            <i class="fas fa-hotel"></i>
-                        </div>
-                        <div class="service-content">
-                            <h3>កក់សណ្ឋាគារ និងទីលំនៅ</h3>
-                            <p>សណ្ឋាគារ, Guesthouse, Resort នៅទីតាំងសំខាន់ៗ</p>
-                            <a href="#service-detail" class="btn btn-small nav-link" data-page="service-detail" data-service="hotel-booking" style="margin-top: 1rem;">ព័ត៌មានលម្អិត</a>
-                        </div>
-                    </div>
-                    
-                    <div class="service-card" data-service="transportation">
-                        <div class="service-icon">
-                            <i class="fas fa-bus"></i>
-                        </div>
-                        <div class="service-content">
-                            <h3>សេវាដឹកជញ្ជូន</h3>
-                            <p>រថយន្តទេសចរណ៍, ឡានក្រុង, យន្តហោះ, ទូក</p>
-                            <a href="#service-detail" class="btn btn-small nav-link" data-page="service-detail" data-service="transportation" style="margin-top: 1rem;">ព័ត៌មានលម្អិត</a>
-                        </div>
-                    </div>
-                    
-                    <div class="service-card" data-service="visa-services">
-                        <div class="service-icon">
-                            <i class="fas fa-passport"></i>
-                        </div>
-                        <div class="service-content">
-                            <h3>សេវាទិដ្ឋាការ</h3>
-                            <p>ជួយដាក់ពាក្យសុំវីសា និងផ្តល់ព័ត៌មានអំពីឯកសារ</p>
-                            <a href="#service-detail" class="btn btn-small nav-link" data-page="service-detail" data-service="visa-services" style="margin-top: 1rem;">ព័ត៌មានលម្អិត</a>
-                        </div>
-                    </div>
-                    
-                    <div class="service-card" data-service="tour-guide">
-                        <div class="service-icon">
-                            <i class="fas fa-map-signs"></i>
-                        </div>
-                        <div class="service-content">
-                            <h3>មគ្គុទេសក៍ទេសចរណ៍</h3>
-                            <p>មគ្គុទេសក៍ក្នុងស្រុក និងនិយាយភាសាបរទេស</p>
-                            <a href="#service-detail" class="btn btn-small nav-link" data-page="service-detail" data-service="tour-guide" style="margin-top: 1rem;">ព័ត៌មានលម្អិត</a>
-                        </div>
-                    </div>
-                    
-                    <div class="service-card" data-service="ticket-booking">
-                        <div class="service-icon">
-                            <i class="fas fa-ticket-alt"></i>
-                        </div>
-                        <div class="service-content">
-                            <h3>កក់សំបុត្រ</h3>
-                            <p>សំបុត្រយន្តហោះ និងសំបុត្រចូលទស្សនាទីកន្លែងទេសចរណ៍</p>
-                            <a href="#service-detail" class="btn btn-small nav-link" data-page="service-detail" data-service="ticket-booking" style="margin-top: 1rem;">ព័ត៌មានលម្អិត</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="contact-info-section">
-                    <h3 style="color: var(--primary); margin-bottom: 1rem;">ទំនាក់ទំនងសម្រាប់ការកក់សេវាកម្ម</h3>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
-                        <div>
-                            <h4 style="color: var(--secondary); margin-bottom: 0.5rem;"><i class="fas fa-phone"></i> ទូរស័ព្ទកក់</h4>
-                            <p>012 345 678 (ទូរស័ព្ទទូរសារ)</p>
-                            <p>015 678 901 (ទូរស័ព្ទទូរសារ)</p>
-                        </div>
-                        <div>
-                            <h4 style="color: var(--secondary); margin-bottom: 0.5rem;"><i class="fas fa-envelope"></i> អ៊ីមែលកក់</h4>
-                            <p>booking@companytourism.com</p>
-                            <p>reservation@companytourism.com</p>
-                        </div>
-                        <div>
-                            <h4 style="color: var(--secondary); margin-bottom: 0.5rem;"><i class="fab fa-telegram"></i> Telegram</h4>
-                            <p>@CompanyTourismBooking</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Service Detail Page -->
-        <div id="service-detail-page" class="page">
-            <div class="back-button">
-                <a href="#services" class="btn btn-small nav-link" data-page="services"><i class="fas fa-arrow-left"></i> ត្រឡប់ទៅសេវាកម្ម</a>
-            </div>
-            
-            <h2 class="page-title khmer-title" id="service-detail-title">ព័ត៌មានលម្អិតសេវាកម្ម</h2>
-            
-            <div class="breadcrumb">
-                <ul>
-                    <li><a href="#home" class="nav-link" data-page="home">ទំព័រដើម</a></li>
-                    <li><a href="#services" class="nav-link" data-page="services">សេវាកម្ម</a></li>
-                    <li id="service-breadcrumb">ព័ត៌មានលម្អិត</li>
-                </ul>
-            </div>
-            
-            <div class="page-content khmer-content">
-                <div class="service-detail">
-                    <div class="service-info">
-                        <h3 id="service-name">រៀបចំដំណើរកម្សាន្ត</h3>
-                        <p id="service-description">យើងផ្តល់សេវាកម្មរៀបចំដំណើរកម្សាន្តទាំងក្នុងស្រុក និងអន្តរជាតិតាមតម្រូវការរបស់អ្នក។</p>
-                        
-                        <div class="service-features">
-                            <h4 style="color: var(--primary); margin-bottom: 1rem;">លក្ខណៈពិសេសនៃសេវាកម្ម</h4>
-                            <ul id="service-features">
-                                <li>ទេសចរណ៍ក្នុងស្រុកទៅកន្លែងគួរឱ្យចាប់អារម្មណ៍</li>
-                                <li>ទេសចរណ៍អន្តរជាតិទៅប្រទេសនានាជុំវិញពិភពលោក</li>
-                                <li>កញ្ចប់ទេសចរណ៍តាមការកំណត់ផ្ទាល់ខ្លួន</li>
-                                <li>ការរៀបចំគម្រោងដំណើរពេញលេញ</li>
-                            </ul>
-                        </div>
-                        
-                        <div style="margin-top: 2rem;">
-                            <h4 style="color: var(--primary); margin-bottom: 1rem;">តម្លៃសេវាកម្ម</h4>
-                            <p id="service-price">ចាប់ពី $50 ឡើងទៅ អាស្រ័យលើប្រភេទដំណើរ និងរយៈពេល</p>
-                        </div>
-                        
-                        <div style="margin-top: 2rem;">
-                            <a href="#contact" class="btn nav-link" data-page="contact">ទាក់ទងដើម្បីកក់សេវាកម្ម</a>
-                        </div>
-                    </div>
-                    
-                    <div class="service-image">
-                        <img id="service-image" src="https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="សេវាកម្ម">
-                    </div>
-                </div>
-                
-                <div class="contact-info-section">
-                    <h3 style="color: var(--primary); margin-bottom: 1rem;">ទំនាក់ទំនងសម្រាប់សេវាកម្មនេះ</h3>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
-                        <div>
-                            <h4 style="color: var(--secondary); margin-bottom: 0.5rem;"><i class="fas fa-phone"></i> ទូរស័ព្ទ</h4>
-                            <p id="service-phone">012 345 678</p>
-                        </div>
-                        <div>
-                            <h4 style="color: var(--secondary); margin-bottom: 0.5rem;"><i class="fas fa-envelope"></i> អ៊ីមែល</h4>
-                            <p id="service-email">booking@companytourism.com</p>
-                        </div>
-                        <div>
-                            <h4 style="color: var(--secondary); margin-bottom: 0.5rem;"><i class="fas fa-clock"></i> ម៉ោងសេវា</h4>
-                            <p id="service-hours">ច័ន្ទ-សុក្រ 8:00-18:00</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Contact Page -->
-        <div id="contact-page" class="page">
-            <h2 class="page-title khmer-title">ទំនាក់ទំនងជាមួយយើង</h2>
-            
-            <div class="breadcrumb">
-                <ul>
-                    <li><a href="#home" class="nav-link" data-page="home">ទំព័រដើម</a></li>
-                    <li>ទំនាក់ទំនង</li>
-                </ul>
-            </div>
-            
-            <div class="page-content khmer-content">
-                <p>សូមទំនាក់ទំនងមកយើងខ្ញុំសម្រាប់ព័ត៌មានបន្ថែម ឬការកក់ទេសចរណ៍។</p>
-                
-                <div class="contact-types" style="margin-top: 2rem;">
-                    <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-headset"></i>
-                        </div>
-                        <h3>ការិយាល័យសំខាន់</h3>
-                        <p><strong>ទូរស័ព្ទ:</strong> 023 456 789</p>
-                        <p><strong>អ៊ីមែល:</strong> info@companytourism.com</p>
-                        <p><strong>ទីតាំង:</strong> ផ្ទះលេខ 123, ផ្លូវមានជ័យ, រាជធានីភ្នំពេញ</p>
-                    </div>
-                    
-                    <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-calendar-check"></i>
-                        </div>
-                        <h3>ការកក់សេវាកម្ម</h3>
-                        <p><strong>ទូរស័ព្ទ:</strong> 012 345 678</p>
-                        <p><strong>អ៊ីមែល:</strong> booking@companytourism.com</p>
-                        <p><strong>Telegram:</strong> @CompanyTourismBooking</p>
-                    </div>
-                    
-                    <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-comment-dots"></i>
-                        </div>
-                        <h3>សេវាកម្មអតិថិជន</h3>
-                        <p><strong>ទូរស័ព្ទ:</strong> 015 678 901</p>
-                        <p><strong>អ៊ីមែល:</strong> support@companytourism.com</p>
-                        <p><strong>ម៉ោងសេវា:</strong> ច័ន្ទ-សៅរ៍ 7:00-20:00</p>
-                    </div>
-                    
-                    <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-handshake"></i>
-                        </div>
-                        <h3>កិច្ចសហប្រតិបត្តិការ</h3>
-                        <p><strong>ទូរស័ព្ទ:</strong> 023 456 790</p>
-                        <p><strong>អ៊ីមែល:</strong> partnership@companytourism.com</p>
-                        <p><strong>ទូរសារ:</strong> 023 456 788</p>
-                    </div>
-                </div>
-                
-                <div class="contact-form" style="margin-top: 3rem;">
-                    <h3 style="color: var(--primary); margin-bottom: 1.5rem; text-align: center;">បញ្ជូនសារមកយើង</h3>
-                    <form id="contactForm">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="name">ឈ្មោះពេញ *</label>
-                                <input type="text" id="name" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="email">អ៊ីមែល *</label>
-                                <input type="email" id="email" required>
-                            </div>
-                        </div>
-                        
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="phone">លេខទូរស័ព្ទ *</label>
-                                <input type="tel" id="phone" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="subject">ប្រធានបទ *</label>
-                                <select id="subject" required>
-                                    <option value="">ជ្រើសរើសប្រធានបទ</option>
-                                    <option value="booking">ការកក់សេវាកម្ម</option>
-                                    <option value="information">សំណួរព័ត៌មាន</option>
-                                    <option value="complaint">ការបរិហារកេរ្តិ៍</option>
-                                    <option value="suggestion">យោបល់ និងអនុសាសន៍</option>
-                                    <option value="partnership">កិច្ចសហប្រតិបត្តិការ</option>
-                                    <option value="other">ផ្សេងៗ</option>
-                                </select>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message">សារ *</label>
-                            <textarea id="message" rows="5" required></textarea>
-                        </div>
-                        
-                        <div style="text-align: center;">
-                            <button type="submit" class="btn">ផ្ញើសារ</button>
-                        </div>
-                    </form>
-                </div>
-                
-                <div class="map-container">
-                    <h3 style="color: var(--primary); margin-bottom: 1rem; text-align: center;">ទីតាំងការិយាល័យរបស់យើង</h3>
-                    <!-- Map Placeholder - In a real website, you would embed Google Maps here -->
-                    <div style="background-color: #e9ecef; height: 300px; display: flex; align-items: center; justify-content: center; color: var(--gray);">
-                        <div style="text-align: center;">
-                            <i class="fas fa-map-marker-alt" style="font-size: 3rem; margin-bottom: 1rem;"></i>
-                            <p>ផ្ទះលេខ 123, ផ្លូវមានជ័យ, រាជធានីភ្នំពេញ</p>
-                            <p>Google Maps: <a href="#" style="color: var(--primary);">ចុចទីនេះដើម្បីមើលទីតាំង</a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Branches Page -->
-        <div id="branches-page" class="page">
-            <h2 class="page-title khmer-title">សាខានៃក្រុមហ៊ុនទេសចរណ៍របស់យើង</h2>
-            
-            <div class="breadcrumb">
-                <ul>
-                    <li><a href="#home" class="nav-link" data-page="home">ទំព័រដើម</a></li>
-                    <li>សាខាយើង</li>
-                </ul>
-            </div>
-            
-            <div class="page-content khmer-content">
-                <p>ក្រុមហ៊ុនទេសចរណ៍របស់យើងមានសាខានៅតាមទីក្រុងសំខាន់ៗជុំវិញប្រទេសកម្ពុជា។</p>
-                
-                <div class="contact-types" style="margin-top: 2rem;">
-                    <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-city"></i>
-                        </div>
-                        <h3>សាខាភ្នំពេញ</h3>
-                        <p><strong>ទូរស័ព្ទ:</strong> 023 456 789</p>
-                        <p><strong>ទីតាំង:</strong> ផ្ទះលេខ 123, ផ្លូវមានជ័យ, រាជធានីភ្នំពេញ</p>
-                        <p><strong>ម៉ោងសេវា:</strong> ច័ន្ទ-សុក្រ 8:00-18:00, សៅរ៍ 8:00-12:00</p>
-                        <p><strong>បុគ្គលិកទំនាក់ទំនង:</strong> លោក សុខ សំអាត (អ្នកគ្រប់គ្រងសាខា)</p>
-                    </div>
-                    
-                    <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-torii-gate"></i>
-                        </div>
-                        <h3>សាខាសៀមរាប</h3>
-                        <p><strong>ទូរស័ព្ទ:</strong> 063 123 456</p>
-                        <p><strong>ទីតាំង:</strong> ផ្ទះលេខ 45, ផ្លូវអង្គរ, ក្រុងសៀមរាប</p>
-                        <p><strong>ម៉ោងសេវា:</strong> រៀងរាល់ថ្ងៃ 7:00-19:00</p>
-                        <p><strong>បុគ្គលិកទំនាក់ទំនង:</strong> លោកស្រី មាស សុធារី (អ្នកគ្រប់គ្រងសាខា)</p>
-                    </div>
-                    
-                    <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-umbrella-beach"></i>
-                        </div>
-                        <h3>សាខាកំពត</h3>
-                        <p><strong>ទូរស័ព្ទ:</strong> 033 789 012</p>
-                        <p><strong>ទីតាំង:</strong> ផ្ទះលេខ 78, ផ្លូវឆ្នេរខ្សាច់ស, ក្រុងកំពត</p>
-                        <p><strong>ម៉ោងសេវា:</strong> ច័ន្ទ-សុក្រ 8:00-17:00, សៅរ៍ 8:00-12:00</p>
-                        <p><strong>បុគ្គលិកទំនាក់ទំនង:</strong> លោក រិទ្ធ សុផល (អ្នកគ្រប់គ្រងសាខា)</p>
-                    </div>
-                    
-                    <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-water"></i>
-                        </div>
-                        <h3>សាខាព្រះសីហនុ</h3>
-                        <p><strong>ទូរស័ព្ទ:</strong> 034 456 789</p>
-                        <p><strong>ទីតាំង:</strong> ផ្ទះលេខ 12, ផ្លូវអូឡាំពិក, ក្រុងព្រះសីហនុ</p>
-                        <p><strong>ម៉ោងសេវា:</strong> រៀងរាល់ថ្ងៃ 8:00-20:00</p>
-                        <p><strong>បុគ្គលិកទំនាក់ទំនង:</strong> លោកស្រី វណ្ណា សុគន្ធា (អ្នកគ្រប់គ្រងសាខា)</p>
-                    </div>
-                </div>
-                
-                <div style="margin-top: 3rem;">
-                    <h3 style="color: var(--primary); margin-bottom: 1rem; text-align: center;">ទំនាក់ទំនងសាខាតាមរយៈ</h3>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
-                        <div>
-                            <h4 style="color: var(--secondary); margin-bottom: 0.5rem;"><i class="fas fa-phone"></i> ទូរស័ព្ទកណ្តាល</h4>
-                            <p>023 456 789 (សាខាភ្នំពេញ)</p>
-                            <p>012 999 888 (ទូរស័ព្ទទូរសារសាខាទាំងអស់)</p>
-                        </div>
-                        <div>
-                            <h4 style="color: var(--secondary); margin-bottom: 0.5rem;"><i class="fas fa-envelope"></i> អ៊ីមែលសាខា</h4>
-                            <p>phnompenh@companytourism.com</p>
-                            <p>siemreap@companytourism.com</p>
-                            <p>kampot@companytourism.com</p>
-                            <p>shianoukville@companytourism.com</p>
-                        </div>
-                        <div>
-                            <h4 style="color: var(--secondary); margin-bottom: 0.5rem;"><i class="fas fa-fax"></i> ទូរសារ</h4>
-                            <p>023 456 788 (សាខាភ្នំពេញ)</p>
-                            <p>063 123 455 (សាខាសៀមរាប)</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
-    
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3 class="khmer-title">ក្រុមហ៊ុនទេសចរណ៍</h3>
-                    <p>យើងផ្តល់សេវាកម្មទេសចរណ៍ពេញលេញ និងមានគុណភាពខ្ពស់ ដើម្បីធ្វើឱ្យដំណើររបស់អ្នកកាន់តែរីករាយ។</p>
-                    <div class="social-icons">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-telegram"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-section">
-                    <h3 class="khmer-title">ទំនាក់ទំនង</h3>
-                    <ul>
-                        <li><i class="fas fa-phone"></i> 023 456 789</li>
-                        <li><i class="fas fa-envelope"></i> info@companytourism.com</li>
-                        <li><i class="fas fa-map-marker-alt"></i> ផ្ទះលេខ 123, ផ្លូវមានជ័យ, ភ្នំពេញ</li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h3 class="khmer-title">ផ្លូវទំនាក់ទំនង</h3>
-                    <ul>
-                        <li><a href="#contact" class="nav-link" data-page="contact"><i class="fas fa-headset"></i> ការិយាល័យសំខាន់</a></li>
-                        <li><a href="#contact" class="nav-link" data-page="contact"><i class="fas fa-calendar-check"></i> ការកក់សេវាកម្ម</a></li>
-                        <li><a href="#contact" class="nav-link" data-page="contact"><i class="fas fa-comment-dots"></i> សេវាកម្មអតិថិជន</a></li>
-                        <li><a href="#branches" class="nav-link" data-page="branches"><i class="fas fa-code-branch"></i> សាខាយើង</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="copyright">
-                <p>© 2023 Company Tourism - ក្រុមហ៊ុនទេសចរណ៍. រក្សាសិទ្ធិគ្រប់យ៉ាង.</p>
-            </div>
-        </div>
-    </footer>
 
-    <script>
-        // Service data
-        const servicesData = {
-            'tour-packages': {
-                name: 'រៀបចំដំណើរកម្សាន្ត',
-                description: 'យើងផ្តល់សេវាកម្មរៀបចំដំណើរកម្សាន្តទាំងក្នុងស្រុក និងអន្តរជាតិតាមតម្រូវការរបស់អ្នក។ យើងនឹងរៀបចំគម្រោងដំណើរពេញលេញដែលរួមបញ្ចូលទាំងការកក់សណ្ឋាគារ សេវាដឹកជញ្ជូន មគ្គុទេសក៍ និងសកម្មភាពទេសចរណ៍។',
-                features: [
-                    'ទេសចរណ៍ក្នុងស្រុកទៅកន្លែងគួរឱ្យចាប់អារម្មណ៍',
-                    'ទេសចរណ៍អន្តរជាតិទៅប្រទេសនានាជុំវិញពិភពលោក',
-                    'កញ្ចប់ទេសចរណ៍តាមការកំណត់ផ្ទាល់ខ្លួន',
-                    'ការរៀបចំគម្រោងដំណើរពេញលេញ',
-                    'ការធានាសុវត្ថិភាព និងគុណភាពសេវាកម្ម'
-                ],
-                price: 'ចាប់ពី $50 ឡើងទៅ អាស្រ័យលើប្រភេទដំណើរ និងរយៈពេល',
-                phone: '012 345 678',
-                email: 'tour@companytourism.com',
-                hours: 'ច័ន្ទ-សុក្រ 8:00-18:00, សៅរ៍ 8:00-12:00',
-                image: 'https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
-            },
-            'hotel-booking': {
-                name: 'កក់សណ្ឋាគារ និងទីលំនៅ',
-                description: 'សេវាកម្មកក់សណ្ឋាគារ និងទីលំនៅនៅទូទាំងប្រទេសកម្ពុជា និងទូទាំងពិភពលោក។ យើងមានភាពសហការជាមួយសណ្ឋាគារល្បីៗជាច្រើន ហើយអាចផ្តល់អត្រាពិសេសសម្រាប់អតិថិជនរបស់យើង។',
-                features: [
-                    'សណ្ឋាគារពី ៣-៥ ផ្កាយនៅទីក្រុងសំខាន់ៗ',
-                    'Resort និង Guesthouse នៅតំបន់ទេសចរណ៍',
-                    'អត្រាពិសេសសម្រាប់អតិថិជនរបស់យើង',
-                    'ការធានាការកក់ដោយសុវត្ថិភាព',
-                    'សេវាកម្មជំនួយផ្ទាល់ ២៤ម៉ោង'
-                ],
-                price: 'ចាប់ពី $20/យប់ ឡើងទៅ អាស្រ័យលើប្រភេទសណ្ឋាគារ និងទីតាំង',
-                phone: '012 345 679',
-                email: 'hotel@companytourism.com',
-                hours: 'រៀងរាល់ថ្ងៃ 7:00-22:00',
-                image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
-            },
-            'transportation': {
-                name: 'សេវាដឹកជញ្ជូន',
-                description: 'យើងផ្តល់សេវាកម្មដឹកជញ្ជូនទាំងក្នុងស្រុក និងអន្តរជាតិ។ រួមមានរថយន្តទេសចរណ៍ ឡានក្រុង យន្តហោះ ទូក និងរថភ្លើង។ យើងធានាសុវត្ថិភាព និងភាពងាយស្រួលសម្រាប់អតិថិជនរបស់យើង។',
-                features: [
-                    'រថយន្តទេសចរណ៍ជាមួយអ្នកបើកបរមានបទពិសោធន៍',
-                    'ឡានក្រុងទេសចរណ៍គុណភាពខ្ពស់',
-                    'ការកក់សំបុត្រយន្តហោះអន្តរជាតិ',
-                    'សេវាទូកទៅកោះនានា',
-                    'ការធានាសុវត្ថិភាពពេលធ្វើដំណើរ'
-                ],
-                price: 'ចាប់ពី $30/ថ្ងៃ ឡើងទៅ អាស្រ័យលើប្រភេទយានជំនិះ និងចម្ងាយ',
-                phone: '012 345 680',
-                email: 'transport@companytourism.com',
-                hours: 'ច័ន្ទ-សុក្រ 7:00-20:00, សៅរ៍ 7:00-18:00',
-                image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
-            },
-            'visa-services': {
-                name: 'សេវាទិដ្ឋាការ',
-                description: 'យើងផ្តល់សេវាកម្មជំនួយក្នុងការដាក់ពាក្យសុំវីសាទៅកាន់ប្រទេសនានាជុំវិញពិភពលោក។ យើងមានបទពិសោធន៍ក្នុងការដោះស្រាយឯកសារទិដ្ឋាការ និងផ្តល់ព័ត៌មានអំពីលក្ខខណ្ឌទិដ្ឋាការសម្រាប់ប្រទេសនីមួយៗ។',
-                features: [
-                    'ជំនួយក្នុងការដាក់ពាក្យសុំវីសាទៅប្រទេសផ្សេងៗ',
-                    'ផ្តល់ព័ត៌មានអំពីឯកសារចាំបាច់',
-                    'សេវាបកប្រែឯកសារ',
-                    'ការណែនាំអំពីនីតិវិធីទិដ្ឋាការ',
-                    'ការធានាភាពត្រឹមត្រូវនៃឯកសារ'
-                ],
-                price: 'ចាប់ពី $30 ឡើងទៅ អាស្រ័យលើប្រភេទវីសា និងប្រទេសគោលដៅ',
-                phone: '012 345 681',
-                email: 'visa@companytourism.com',
-                hours: 'ច័ន្ទ-សុក្រ 8:00-17:00',
-                image: 'https://images.unsplash.com/photo-1523438885200-e635ba2c371e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
-            },
-            'tour-guide': {
-                name: 'មគ្គុទេសក៍ទេសចរណ៍',
-                description: 'យើងផ្តល់សេវាកម្មមគ្គុទេសក៍ទេសចរណ៍ដែលមានជំនាញ និងបទពិសោធន៍។ មគ្គុទេសក៍របស់យើងនិយាយភាសាជាច្រើន និងមានចំណេះដឹងជ្រៅជ្រះអំពីទីតាំងទេសចរណ៍ ប្រវត្តិសាស្ត្រ និងវប្បធម៌កម្ពុជា។',
-                features: [
-                    'មគ្គុទេសក៍ក្នុងស្រុកដែលមានជំនាញ',
-                    'មគ្គុទេសក៍និយាយភាសាបរទេស (អង់គ្លេស បារាំង ចិន ជប៉ុន)',
-                    'ចំណេះដឹងជ្រៅជ្រះអំពីទីតាំងទេសចរណ៍',
-                    'សេវាបកប្រ�ក្សតាមរយៈទូរស័ព្ទ',
-                    'ការណែនាំអំពីទីតាំងអាហារ និងការកម្សាន្ត'
-                ],
-                price: 'ចាប់ពី $40/ថ្ងៃ ឡើងទៅ អាស្រ័យលើភាសា និងប្រភេទទីតាំង',
-                phone: '012 345 682',
-                email: 'guide@companytourism.com',
-                hours: 'រៀងរាល់ថ្ងៃ 6:00-20:00',
-                image: 'https://images.unsplash.com/photo-1523531294919-4bcd7c65e216?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
-            },
-            'ticket-booking': {
-                name: 'កក់សំបុត្រ',
-                description: 'យើងផ្តល់សេវាកម្មកក់សំបុត្រយន្តហោះទាំងក្នុងស្រុក និងអន្តរជាតិ ក៏ដូចជាសំបុត្រចូលទស្សនាទីកន្លែងទេសចរណ៍នានា។ យើងធានាអត្រាល្អបំផុត និងការកក់ដោយសុវត្ថិភាព។',
-                features: [
-                    'ការកក់សំបុត្រយន្តហោះទាំងក្នុងស្រុក និងអន្តរជាតិ',
-                    'សំបុត្រចូលទស្សនាទីកន្លែងទេសចរណ៍',
-                    'សំបុត្រសំណៀង និងកម្មវិធីប្រពៃណី',
-                    'អត្រាពិសេសសម្រាប់អតិថិជនរបស់យើង',
-                    'ការធានាសុវត្ថិភាពនៃការទូទាត់'
-                ],
-                price: 'ចាប់ពីតម្លៃសំបុត្រស្តង់ដារ អាស្រ័យលើប្រភេទសំបុត្រ និងរដូវកាល',
-                phone: '012 345 683',
-                email: 'ticket@companytourism.com',
-                hours: 'ច័ន្ទ-សុក្រ 8:00-19:00, សៅរ៍ 8:00-15:00',
-                image: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
-            }
-        };
+<div class="container">
 
-        // DOM elements
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mainNav = document.getElementById('mainNav');
-        const navLinks = document.querySelectorAll('.nav-link');
-        const pages = document.querySelectorAll('.page');
-        const contactForm = document.getElementById('contactForm');
+<h2>🛒 ប្រព័ន្ធគណនាលក់</h2>
 
-        // Mobile menu toggle
-        mobileMenuBtn.addEventListener('click', () => {
-            mainNav.classList.toggle('active');
-        });
+<div class="form-group">
+    <input type="text" id="name" placeholder="ឈ្មោះទំនិញ">
+    <input type="number" id="qty" placeholder="ចំនួន">
+    <input type="number" id="price" placeholder="តម្លៃ">
+</div>
 
-        // Navigation handling
-        navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                
-                // Get target page
-                const targetPage = link.getAttribute('data-page');
-                
-                // Update active navigation link
-                navLinks.forEach(navLink => {
-                    navLink.classList.remove('active');
-                });
-                link.classList.add('active');
-                
-                // Show target page
-                pages.forEach(page => {
-                    page.classList.remove('active');
-                });
-                
-                // If service detail page
-                if (targetPage === 'service-detail') {
-                    const serviceId = link.getAttribute('data-service');
-                    loadServiceDetail(serviceId);
-                    document.getElementById('service-detail-page').classList.add('active');
-                } else {
-                    document.getElementById(`${targetPage}-page`).classList.add('active');
-                }
-                
-                // Close mobile menu if open
-                mainNav.classList.remove('active');
-                
-                // Scroll to top
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-        });
+<button onclick="addItem()">បន្ថែម</button>
 
-        // Load service detail
-        function loadServiceDetail(serviceId) {
-            const service = servicesData[serviceId];
-            
-            if (service) {
-                // Update page title
-                document.getElementById('service-detail-title').textContent = service.name;
-                
-                // Update breadcrumb
-                document.getElementById('service-breadcrumb').textContent = service.name;
-                
-                // Update service details
-                document.getElementById('service-name').textContent = service.name;
-                document.getElementById('service-description').textContent = service.description;
-                document.getElementById('service-price').textContent = service.price;
-                document.getElementById('service-phone').textContent = service.phone;
-                document.getElementById('service-email').textContent = service.email;
-                document.getElementById('service-hours').textContent = service.hours;
-                document.getElementById('service-image').src = service.image;
-                document.getElementById('service-image').alt = service.name;
-                
-                // Update features list
-                const featuresList = document.getElementById('service-features');
-                featuresList.innerHTML = '';
-                service.features.forEach(feature => {
-                    const li = document.createElement('li');
-                    li.textContent = feature;
-                    featuresList.appendChild(li);
-                });
-            }
-        }
+<div class="table-wrapper">
+<table>
+    <thead>
+        <tr>
+            <th>ល.រ</th>
+            <th>ឈ្មោះ</th>
+            <th>ចំនួន</th>
+            <th>តម្លៃ</th>
+            <th>សរុប</th>
+        </tr>
+    </thead>
+    <tbody id="tableBody"></tbody>
+</table>
+</div>
 
-        // Handle service card clicks
-        document.querySelectorAll('.service-card').forEach(card => {
-            card.addEventListener('click', (e) => {
-                // Don't trigger if clicking on the button inside
-                if (!e.target.classList.contains('btn') && !e.target.closest('.btn')) {
-                    const serviceId = card.getAttribute('data-service');
-                    
-                    // Update navigation
-                    navLinks.forEach(navLink => {
-                        navLink.classList.remove('active');
-                    });
-                    
-                    // Show service detail page
-                    pages.forEach(page => {
-                        page.classList.remove('active');
-                    });
-                    
-                    loadServiceDetail(serviceId);
-                    document.getElementById('service-detail-page').classList.add('active');
-                    
-                    // Close mobile menu if open
-                    mainNav.classList.remove('active');
-                    
-                    // Scroll to top
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                }
-            });
-        });
+<div class="total" id="grandTotal">
+    តម្លៃសរុបទាំងអស់: $0
+</div>
 
-        // Handle form submission
-        if (contactForm) {
-            contactForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                
-                // Get form values
-                const name = document.getElementById('name').value;
-                const email = document.getElementById('email').value;
-                const phone = document.getElementById('phone').value;
-                const subject = document.getElementById('subject').value;
-                const message = document.getElementById('message').value;
-                
-                // In a real application, you would send this data to a server
-                // For this demo, we'll just show an alert
-                alert(`សូមអរគុណ ${name}! សាររបស់អ្នកត្រូវបានទទួល។ យើងនឹងទាក់ទងអ្នកតាមរយៈ ${phone} ឬ ${email} ក្នុងពេលឆាប់ៗនេះ។`);
-                
-                // Reset form
-                contactForm.reset();
-            });
-        }
+</div>
 
-        // Handle page load - check URL hash
-        window.addEventListener('DOMContentLoaded', () => {
-            const hash = window.location.hash.substring(1);
-            
-            if (hash) {
-                // Find corresponding nav link
-                const targetLink = document.querySelector(`.nav-link[data-page="${hash}"]`);
-                if (targetLink) {
-                    targetLink.click();
-                }
-            }
-        });
-    </script>
+<script>
+
+let count = 0;
+let totalAll = 0;
+
+function addItem(){
+
+    let name = document.getElementById("name").value;
+    let qty = parseFloat(document.getElementById("qty").value);
+    let price = parseFloat(document.getElementById("price").value);
+
+    if(!name || !qty || !price){
+        alert("សូមបញ្ចូលព័ត៌មាន!");
+        return;
+    }
+
+    let total = qty * price;
+
+    count++;
+    totalAll += total;
+
+    let row = `
+        <tr>
+            <td>${count}</td>
+            <td>${name}</td>
+            <td>${qty}</td>
+            <td>$${price}</td>
+            <td>$${total}</td>
+        </tr>
+    `;
+
+    document.getElementById("tableBody").innerHTML += row;
+
+    document.getElementById("grandTotal").innerHTML =
+        "តម្លៃសរុបទាំងអស់: $" + totalAll;
+
+    document.getElementById("name").value="";
+    document.getElementById("qty").value="";
+    document.getElementById("price").value="";
+}
+
+</script>
+
 </body>
 </html>
